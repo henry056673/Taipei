@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_01f4d877fab135d00ea65f56828708d6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <h4 style="position: fixed; 
+               top: 10px; left: 60px; width: 340px; z-index:9999;
+               background-color: white; padding: 8px; border:2px solid #666; border-radius:6px;
+               font-size:14px;">
+    台北租屋候選地圖（捷運距離優先版）<br>
+    <span style="font-size:12px;color:#555;">
+    紅：目標地址｜藍：樂屋｜綠：591｜橘：超預算｜紫：整合重複刊登群<br>
+    部分僅有路段/社區的物件，座標為約略位置。
+    </span>
+    </h4>
+    
+    
+            <div class="folium-map" id="map_01f4d877fab135d00ea65f56828708d6" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_01f4d877fab135d00ea65f56828708d6 = L.map(
+                "map_01f4d877fab135d00ea65f56828708d6",
+                {
+                    center: [25.0416, 121.5499],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_275ea3394ddbf41b56f75476f5a18c3c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_275ea3394ddbf41b56f75476f5a18c3c.addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var circle_4f092329fedf5d4a80a409d5f3b814f1 = L.circle(
+                [25.0416, 121.5499],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 500, "stroke": true, "weight": 3}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            circle_4f092329fedf5d4a80a409d5f3b814f1.bindTooltip(
+                `<div>
+                     500m 範圍
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_881f7e885cd3d4377b434a0fbc68723c = L.circle(
+                [25.0416, 121.5499],
+                {"bubblingMouseEvents": true, "color": "#66a3ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#66a3ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            circle_881f7e885cd3d4377b434a0fbc68723c.bindTooltip(
+                `<div>
+                     1km 範圍
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_cb536773979538da65b55c45c33cf94d = L.marker(
+                [25.0416, 121.5499],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_32ac6c851bb02931ab1a2ddfd875589d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22a0241f213e12c800dd01e417bc1d2d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_93e68b08bdc53f3cce692032750cbb72 = $(`<div id="html_93e68b08bdc53f3cce692032750cbb72" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>目標地址</b><br>         分類：目標<br>         地址：106台北市大安區忠孝東路四段176號<br>         租金：—<br>         最近捷運：忠孝敦化（約99m）<br>         到忠孝東路四段176號：約0m／步行約0分鐘<br>         備註：比較基準點         </div>         </div>`)[0];
+                popup_22a0241f213e12c800dd01e417bc1d2d.setContent(html_93e68b08bdc53f3cce692032750cbb72);
+            
+        
+
+        marker_cb536773979538da65b55c45c33cf94d.bindPopup(popup_22a0241f213e12c800dd01e417bc1d2d)
+        ;
+
+        
+    
+    
+            marker_cb536773979538da65b55c45c33cf94d.bindTooltip(
+                `<div>
+                     目標地址｜目標
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cb536773979538da65b55c45c33cf94d.setIcon(icon_32ac6c851bb02931ab1a2ddfd875589d);
+            
+    
+            var marker_573807ecb3489aa1f907bb885179f787 = L.marker(
+                [25.0414, 121.5488],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_7d1622f545d65661b8bd7a42ab883360 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_12c0119df0300f4ae3437faa0976e075 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_81ce12852c11ec13fb10653679bc38a9 = $(`<div id="html_81ce12852c11ec13fb10653679bc38a9" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#1</b><br>         分類：樂屋<br>         地址：大安區敦化南路一段（約略）<br>         租金：35,000<br>         最近捷運：忠孝敦化（約160m）<br>         到忠孝東路四段176號：約113m／步行約2分鐘<br>         備註：全新！面101邊間美屋         </div>         </div>`)[0];
+                popup_12c0119df0300f4ae3437faa0976e075.setContent(html_81ce12852c11ec13fb10653679bc38a9);
+            
+        
+
+        marker_573807ecb3489aa1f907bb885179f787.bindPopup(popup_12c0119df0300f4ae3437faa0976e075)
+        ;
+
+        
+    
+    
+            marker_573807ecb3489aa1f907bb885179f787.bindTooltip(
+                `<div>
+                     樂屋#1｜35,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_573807ecb3489aa1f907bb885179f787.setIcon(icon_7d1622f545d65661b8bd7a42ab883360);
+            
+    
+            var marker_a64f0f6bf9530b70fec4fdf77bcd2fb7 = L.marker(
+                [25.0417, 121.5438],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_c13d0f2b7b106bbca6c54480101d3014 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d5fb6a44a63161b2754e4a82c0d0c4e4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2356e5f8f63034241446f393124291aa = $(`<div id="html_2356e5f8f63034241446f393124291aa" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#2</b><br>         分類：樂屋<br>         地址：大安區復興南路一段（約略）<br>         租金：52,000<br>         最近捷運：忠孝復興（約50m）<br>         到忠孝東路四段176號：約615m／步行約8分鐘<br>         備註：忠孝復興★全新電梯一房         </div>         </div>`)[0];
+                popup_d5fb6a44a63161b2754e4a82c0d0c4e4.setContent(html_2356e5f8f63034241446f393124291aa);
+            
+        
+
+        marker_a64f0f6bf9530b70fec4fdf77bcd2fb7.bindPopup(popup_d5fb6a44a63161b2754e4a82c0d0c4e4)
+        ;
+
+        
+    
+    
+            marker_a64f0f6bf9530b70fec4fdf77bcd2fb7.bindTooltip(
+                `<div>
+                     樂屋#2｜52,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a64f0f6bf9530b70fec4fdf77bcd2fb7.setIcon(icon_c13d0f2b7b106bbca6c54480101d3014);
+            
+    
+            var marker_f90c615e8ae457dc2442d2a19c3258d9 = L.marker(
+                [25.0497, 121.5562],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_b645f10ea5943827d8e2bd2e20c96609 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8c370b439c3dff54f76515d74cbd4346 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c3196406f97e3253113ba166b0cad2b4 = $(`<div id="html_c3196406f97e3253113ba166b0cad2b4" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#3</b><br>         分類：樂屋<br>         地址：松山區八德路三段（約略）<br>         租金：32,000<br>         最近捷運：台北小巨蛋 / 南京三民生活圈（約388m）<br>         到忠孝東路四段176號：約1102m／步行約15分鐘<br>         備註：東區時尚美居         </div>         </div>`)[0];
+                popup_8c370b439c3dff54f76515d74cbd4346.setContent(html_c3196406f97e3253113ba166b0cad2b4);
+            
+        
+
+        marker_f90c615e8ae457dc2442d2a19c3258d9.bindPopup(popup_8c370b439c3dff54f76515d74cbd4346)
+        ;
+
+        
+    
+    
+            marker_f90c615e8ae457dc2442d2a19c3258d9.bindTooltip(
+                `<div>
+                     樂屋#3｜32,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f90c615e8ae457dc2442d2a19c3258d9.setIcon(icon_b645f10ea5943827d8e2bd2e20c96609);
+            
+    
+            var marker_671e554dec0df884c355e76dd224f217 = L.marker(
+                [25.0334, 121.566],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_e9987b488e32e05094140c9689c2f6f7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_114d8c3348c4aa2c928a5d0980d89598 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_03fc097a6797fc1a435e1a12cbd1c4cd = $(`<div id="html_03fc097a6797fc1a435e1a12cbd1c4cd" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#4</b><br>         分類：樂屋<br>         地址：信義區信義路五段（約略）<br>         租金：36,000<br>         最近捷運：象山（約308m）<br>         到忠孝東路四段176號：約1861m／步行約25分鐘<br>         備註：信義計畫區優質套房         </div>         </div>`)[0];
+                popup_114d8c3348c4aa2c928a5d0980d89598.setContent(html_03fc097a6797fc1a435e1a12cbd1c4cd);
+            
+        
+
+        marker_671e554dec0df884c355e76dd224f217.bindPopup(popup_114d8c3348c4aa2c928a5d0980d89598)
+        ;
+
+        
+    
+    
+            marker_671e554dec0df884c355e76dd224f217.bindTooltip(
+                `<div>
+                     樂屋#4｜36,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_671e554dec0df884c355e76dd224f217.setIcon(icon_e9987b488e32e05094140c9689c2f6f7);
+            
+    
+            var marker_a0dbe6fc23209b60ef339a065a02ebbf = L.marker(
+                [25.0507, 121.5777],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_1b9949ec484fa99b78612e5045cba529 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3223c366f334e244ea36582363c3275d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_89a27b0f4befffbe3b3942b2321ff6f9 = $(`<div id="html_89a27b0f4befffbe3b3942b2321ff6f9" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#5</b><br>         分類：樂屋<br>         地址：信義區市民大道六段（約略）<br>         租金：39,500<br>         最近捷運：松山（約391m）<br>         到忠孝東路四段176號：約2978m／步行約40分鐘<br>         備註：松山站～全新落成智慧宅         </div>         </div>`)[0];
+                popup_3223c366f334e244ea36582363c3275d.setContent(html_89a27b0f4befffbe3b3942b2321ff6f9);
+            
+        
+
+        marker_a0dbe6fc23209b60ef339a065a02ebbf.bindPopup(popup_3223c366f334e244ea36582363c3275d)
+        ;
+
+        
+    
+    
+            marker_a0dbe6fc23209b60ef339a065a02ebbf.bindTooltip(
+                `<div>
+                     樂屋#5｜39,500
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a0dbe6fc23209b60ef339a065a02ebbf.setIcon(icon_1b9949ec484fa99b78612e5045cba529);
+            
+    
+            var marker_770510d3c6388f16e71ceb503552b5a2 = L.marker(
+                [25.042, 121.5452],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_fb00610497b1ee158b209c2f3c09a52d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3841607deae9773fd1d4c53bcafbe591 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1b03de33249d46c9f374ce9a0d2e6d77 = $(`<div id="html_1b03de33249d46c9f374ce9a0d2e6d77" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>樂屋#7</b><br>         分類：樂屋<br>         地址：大安區復興南路一段167號（志榮BR4）<br>         租金：52,000<br>         最近捷運：忠孝復興（約63m）<br>         到忠孝東路四段176號：約476m／步行約6分鐘<br>         備註：東區BR4精美套房         </div>         </div>`)[0];
+                popup_3841607deae9773fd1d4c53bcafbe591.setContent(html_1b03de33249d46c9f374ce9a0d2e6d77);
+            
+        
+
+        marker_770510d3c6388f16e71ceb503552b5a2.bindPopup(popup_3841607deae9773fd1d4c53bcafbe591)
+        ;
+
+        
+    
+    
+            marker_770510d3c6388f16e71ceb503552b5a2.bindTooltip(
+                `<div>
+                     樂屋#7｜52,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_770510d3c6388f16e71ceb503552b5a2.setIcon(icon_fb00610497b1ee158b209c2f3c09a52d);
+            
+    
+            var marker_1bc9aaaf4aeedb9dbcaa0b82047707a8 = L.marker(
+                [25.0411, 121.5439],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_1495954a9eb06bc67c19f3d29db46ad4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f72e0c4e5e8d315dc75c0ee45f63087d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6e7c203893dbcc3d99eaeafffe0506ad = $(`<div id="html_6e7c203893dbcc3d99eaeafffe0506ad" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>統創緻6F 同戶型群</b><br>         分類：整合重複<br>         地址：大安區復興南路一段132號（統創緻）<br>         租金：40,000 / 43,000 / 50,000<br>         最近捷運：忠孝復興（約107m）<br>         到忠孝東路四段176號：約607m／步行約8分鐘<br>         備註：整合：樂屋#6、樂屋#8、591同戶型         </div>         </div>`)[0];
+                popup_f72e0c4e5e8d315dc75c0ee45f63087d.setContent(html_6e7c203893dbcc3d99eaeafffe0506ad);
+            
+        
+
+        marker_1bc9aaaf4aeedb9dbcaa0b82047707a8.bindPopup(popup_f72e0c4e5e8d315dc75c0ee45f63087d)
+        ;
+
+        
+    
+    
+            marker_1bc9aaaf4aeedb9dbcaa0b82047707a8.bindTooltip(
+                `<div>
+                     統創緻6F 同戶型群｜40,000 / 43,000 / 50,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1bc9aaaf4aeedb9dbcaa0b82047707a8.setIcon(icon_1495954a9eb06bc67c19f3d29db46ad4);
+            
+    
+            var marker_a73a43960fcdfdc1aed2cb54e32cc58a = L.marker(
+                [25.0416, 121.5472],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_a08cab7f4f3df86adebcafea9f025526 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cf4f0482a7542bbc34265868a8e029db = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4bdbce03e67fb3487c2611769d90810e = $(`<div id="html_4bdbce03e67fb3487c2611769d90810e" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>591#1</b><br>         分類：591<br>         地址：大安區大安路一段19巷（約略）<br>         租金：25,000<br>         最近捷運：忠孝復興（約340m）<br>         到忠孝東路四段176號：約272m／步行約4分鐘<br>         備註：採光、通風、景觀套房         </div>         </div>`)[0];
+                popup_cf4f0482a7542bbc34265868a8e029db.setContent(html_4bdbce03e67fb3487c2611769d90810e);
+            
+        
+
+        marker_a73a43960fcdfdc1aed2cb54e32cc58a.bindPopup(popup_cf4f0482a7542bbc34265868a8e029db)
+        ;
+
+        
+    
+    
+            marker_a73a43960fcdfdc1aed2cb54e32cc58a.bindTooltip(
+                `<div>
+                     591#1｜25,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a73a43960fcdfdc1aed2cb54e32cc58a.setIcon(icon_a08cab7f4f3df86adebcafea9f025526);
+            
+    
+            var marker_144b326968792c686eed71e3161be0da = L.marker(
+                [25.0188, 121.5584],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_80ef1d2fb2ddfc857ec589b0498656e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e44f7eeb95b03155ed551328a1b7faa4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9861e5daf903c994fb3c08a89e786a7d = $(`<div id="html_9861e5daf903c994fb3c08a89e786a7d" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>591#2</b><br>         分類：591<br>         地址：大安區和平東路三段448-452號（耕云）<br>         租金：39,500<br>         最近捷運：麟光（約204m）<br>         到忠孝東路四段176號：約2676m／步行約36分鐘<br>         備註：捷運麟光站近臺大北醫文教區         </div>         </div>`)[0];
+                popup_e44f7eeb95b03155ed551328a1b7faa4.setContent(html_9861e5daf903c994fb3c08a89e786a7d);
+            
+        
+
+        marker_144b326968792c686eed71e3161be0da.bindPopup(popup_e44f7eeb95b03155ed551328a1b7faa4)
+        ;
+
+        
+    
+    
+            marker_144b326968792c686eed71e3161be0da.bindTooltip(
+                `<div>
+                     591#2｜39,500
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_144b326968792c686eed71e3161be0da.setIcon(icon_80ef1d2fb2ddfc857ec589b0498656e1);
+            
+    
+            var marker_e6570ca64abf67ed644f6424da10843b = L.marker(
+                [25.0411, 121.5486],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_070c2bb606ea3e6541d1856a4b4f4e02 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_55e64533e10f23086fb085131554321e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_979324efd6969afd0564bfb1ca92ab74 = $(`<div id="html_979324efd6969afd0564bfb1ca92ab74" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>591#3</b><br>         分類：591<br>         地址：大安區敦化南路一段177巷45號（太平洋敦南麗舍）<br>         租金：45,000<br>         最近捷運：忠孝敦化（約334m）<br>         到忠孝東路四段176號：約142m／步行約2分鐘<br>         備註：忠孝敦化站全新敦南麗舍         </div>         </div>`)[0];
+                popup_55e64533e10f23086fb085131554321e.setContent(html_979324efd6969afd0564bfb1ca92ab74);
+            
+        
+
+        marker_e6570ca64abf67ed644f6424da10843b.bindPopup(popup_55e64533e10f23086fb085131554321e)
+        ;
+
+        
+    
+    
+            marker_e6570ca64abf67ed644f6424da10843b.bindTooltip(
+                `<div>
+                     591#3｜45,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e6570ca64abf67ed644f6424da10843b.setIcon(icon_070c2bb606ea3e6541d1856a4b4f4e02);
+            
+    
+            var marker_d798d7a8bcd8ce8ef17ec2d9799d5a69 = L.marker(
+                [25.0191, 121.558],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_c66a07874ffa8721427593f861d1dfda = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0c7b1b1c7df5eb438e1b382bb3551bd5 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_b153bede151df0a92db10a5c57d55a41 = $(`<div id="html_b153bede151df0a92db10a5c57d55a41" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>591#4</b><br>         分類：591<br>         地址：大安區和平東路三段（約略）<br>         租金：37,000<br>         最近捷運：麟光（約123m）<br>         到忠孝東路四段176號：約2632m／步行約35分鐘<br>         備註：捷運麟光1分鐘、可租補兩房         </div>         </div>`)[0];
+                popup_0c7b1b1c7df5eb438e1b382bb3551bd5.setContent(html_b153bede151df0a92db10a5c57d55a41);
+            
+        
+
+        marker_d798d7a8bcd8ce8ef17ec2d9799d5a69.bindPopup(popup_0c7b1b1c7df5eb438e1b382bb3551bd5)
+        ;
+
+        
+    
+    
+            marker_d798d7a8bcd8ce8ef17ec2d9799d5a69.bindTooltip(
+                `<div>
+                     591#4｜37,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d798d7a8bcd8ce8ef17ec2d9799d5a69.setIcon(icon_c66a07874ffa8721427593f861d1dfda);
+            
+    
+            var marker_c2d4edb822938f252e31f0cf699741de = L.marker(
+                [25.04113, 121.54395],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_e14b7229f6ae12faaf7af4f03340a516 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_698afefbdc46c942f7801ab46f8faedb = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f3d9a4d81f6d53bee19866b12ef8d773 = $(`<div id="html_f3d9a4d81f6d53bee19866b12ef8d773" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>591#5</b><br>         分類：591<br>         地址：大安區復興南路一段132號（統創緻10F）<br>         租金：49,000<br>         最近捷運：忠孝復興（約259m）<br>         到忠孝東路四段176號：約602m／步行約8分鐘<br>         備註：統創緻10F         </div>         </div>`)[0];
+                popup_698afefbdc46c942f7801ab46f8faedb.setContent(html_f3d9a4d81f6d53bee19866b12ef8d773);
+            
+        
+
+        marker_c2d4edb822938f252e31f0cf699741de.bindPopup(popup_698afefbdc46c942f7801ab46f8faedb)
+        ;
+
+        
+    
+    
+            marker_c2d4edb822938f252e31f0cf699741de.bindTooltip(
+                `<div>
+                     591#5｜49,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c2d4edb822938f252e31f0cf699741de.setIcon(icon_e14b7229f6ae12faaf7af4f03340a516);
+            
+    
+            var marker_b4a0b7041cdb9ad0eb72de4f7ec79e18 = L.marker(
+                [25.04115, 121.544],
+                {
+}
+            ).addTo(marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d);
+        
+    
+            var icon_bc26a5e2f602a92ea5c19830ebeaff4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b3930fee512e56411859b62feaa141dc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_50d206cbe6822522af57719419c8c450 = $(`<div id="html_50d206cbe6822522af57719419c8c450" style="width: 100.0%; height: 100.0%;">         <div style='width:260px'>         <b>超預算-591#1</b><br>         分類：超預算<br>         地址：大安區復興南路一段132號（統創緻11F）<br>         租金：53,000<br>         最近捷運：忠孝復興（約259m）<br>         到忠孝東路四段176號：約596m／步行約8分鐘<br>         備註：統創緻11F，超預算         </div>         </div>`)[0];
+                popup_b3930fee512e56411859b62feaa141dc.setContent(html_50d206cbe6822522af57719419c8c450);
+            
+        
+
+        marker_b4a0b7041cdb9ad0eb72de4f7ec79e18.bindPopup(popup_b3930fee512e56411859b62feaa141dc)
+        ;
+
+        
+    
+    
+            marker_b4a0b7041cdb9ad0eb72de4f7ec79e18.bindTooltip(
+                `<div>
+                     超預算-591#1｜53,000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b4a0b7041cdb9ad0eb72de4f7ec79e18.setIcon(icon_bc26a5e2f602a92ea5c19830ebeaff4c);
+            
+    
+            marker_cluster_c34e2b11f5f29c0744f2aaceeeb3d69d.addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_9216064dd75cf26a4c696d7707355376 = L.polyline(
+                [[25.0416, 121.5499], [25.0414, 121.5488]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_faeb8c52477c7c469e70866d307a413b = L.polyline(
+                [[25.0416, 121.5499], [25.0417, 121.5438]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_2706eb7d588cc4b3e1c3510243c9ca2a = L.polyline(
+                [[25.0416, 121.5499], [25.0497, 121.5562]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_6bab7d1121ab8eb93aa41dd0ed0d31ad = L.polyline(
+                [[25.0416, 121.5499], [25.0334, 121.566]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_05c42314d4654305912a01eba8374371 = L.polyline(
+                [[25.0416, 121.5499], [25.0507, 121.5777]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_6825f293779bc70a61c2f7104402e582 = L.polyline(
+                [[25.0416, 121.5499], [25.042, 121.5452]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_05919e608c488f492823526d748498aa = L.polyline(
+                [[25.0416, 121.5499], [25.0411, 121.5439]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_0385836ba74ec67e53f4950696452054 = L.polyline(
+                [[25.0416, 121.5499], [25.0416, 121.5472]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_54814e5f3899ad2da39093513a9ec32a = L.polyline(
+                [[25.0416, 121.5499], [25.0188, 121.5584]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_852a01cfce2565692029a0ccdccda29c = L.polyline(
+                [[25.0416, 121.5499], [25.0411, 121.5486]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_89603f96e1e7815d303f65875ca101d8 = L.polyline(
+                [[25.0416, 121.5499], [25.0191, 121.558]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_742eff9f001e50103523b98b41e60b94 = L.polyline(
+                [[25.0416, 121.5499], [25.04113, 121.54395]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+    
+            var poly_line_f8b091f8efe33e79b23a89afacebc7c6 = L.polyline(
+                [[25.0416, 121.5499], [25.04115, 121.544]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.45, "smoothFactor": 1.0, "stroke": true, "weight": 1.5}
+            ).addTo(map_01f4d877fab135d00ea65f56828708d6);
+        
+</script>
+</html>
